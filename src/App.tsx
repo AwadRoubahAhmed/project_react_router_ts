@@ -4,14 +4,22 @@ import AddTechnos from "./components/addTechnos/AddTechnos";
 import TechnosLists from "./components/TechnosLists/TechnosLists";
 import Menu from "./menu/Menu";
 import { useState } from "react";
+import { TechnoType } from "./typescript/CheckTypes";
 
 function App() {
-  const [technos, setTechnos] = useState<string[]>([]);
+  const [technos, setTechnos] = useState([]);
 
-  // const handleAddTechno = (techno: string) => {
-  //   console.log("handleAddTechnos", techno);
-  //   //setTechnos([...technos, newTechno])
-  // };
+  // technos
+  // [
+  //   { name: "React", category: "Front", description: "Learn React" },
+  //   { name: "Node", category: "Back", description: "Learn Node" },
+  // ];
+
+  const handleAddTechno = (techno: TechnoType) => {
+    console.log("handleAddTechnos", techno);
+    //setTechnos([...technos, newTechno])
+   
+  };
   return (
     <div className="bg-white min-h-screen">
       <Menu />
@@ -19,7 +27,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/AddTechnos"
-          element={<AddTechnos technos={technos} setTechnos={setTechnos} />}
+          element={<AddTechnos handleAddTechno={handleAddTechno} a={10} />}
         />
         <Route path="/TechnosLists" element={<TechnosLists />} />
       </Routes>

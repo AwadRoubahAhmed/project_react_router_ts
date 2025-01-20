@@ -1,24 +1,29 @@
-import { useId } from "react";
+// import { useId } from "react";
+import { useState } from "react";
+import { AddTechnosProps } from "../../typescript/CheckTypes";
 
-type AddTechnosProps = {
-  technos: string[];
-  setTechnos: React.Dispatch<React.SetStateAction<string[]>>;
-};
-
-function AddTechnos({ technos, setTechnos }: AddTechnosProps) {
+function AddTechnos({ handleAddTechno }: AddTechnosProps) {
   //state;
+  const [techno, setTechno] = useState({
+    name: "",
+    category: "",
+    description: "",
+  });
 
-  const technoSelectedId = useId();
+  //const technoSelectedId = useId();
 
   //Comportement;
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTechnos(event.target.value);
+    setTechno(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    handleAddTechno(techno);
+
     // Add the new techno to the list;
-    console.log("handleSubmit", technos);
+    // console.log("handleSubmit", technos);
   };
 
   return (
@@ -31,7 +36,7 @@ function AddTechnos({ technos, setTechnos }: AddTechnosProps) {
       <div className="container">
         <form
           onSubmit={(event) => handleSubmit(event)}
-          className="max-w-3xl min-h-[400px] bg-gray-200 text-gray-800 text-lg mx-auto rounded-md shadow-2xl p-6"
+          className="max-w-3xl min-h-[400px] bg-gray-100 text-gray-800 text-lg mx-auto rounded-md shadow-2xl p-6"
         >
           {/* Techno Name */}
           <div>
@@ -46,9 +51,9 @@ function AddTechnos({ technos, setTechnos }: AddTechnosProps) {
                 id="techno"
                 name="techno"
                 placeholder="Your Technos..."
-                value={technos}
+                value={techno.name}
                 onChange={handleChange}
-                className="w-full input input-primary max-w-xs bg-white text-gray-800 text-base"
+                className="w-full input input-primary max-w-full bg-white text-gray-800 text-base p-3"
               />
             </div>
           </div>
@@ -62,9 +67,9 @@ function AddTechnos({ technos, setTechnos }: AddTechnosProps) {
             </div>
             <div>
               <select
-                id={technoSelectedId}
+                id="technos-category"
                 name="technos-category"
-                className="w-full select select-primary max-w-xs bg-white text-gray-800 text-base"
+                className="w-full select select-primary max-w-full bg-white text-gray-800 text-base p-3"
               >
                 <option value="">Select a category</option>
                 <option value="front">Front</option>
