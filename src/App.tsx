@@ -1,25 +1,26 @@
 import { Routes, Route } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import Home from "./components/home/Home";
 import AddTechnos from "./components/addTechnos/AddTechnos";
 import TechnosLists from "./components/TechnosLists/TechnosLists";
 import Menu from "./menu/Menu";
 import { useState } from "react";
-import { TechnoType } from "./typescript/CheckTypes";
+import { AddTechnoType } from "./typescript/CheckTypes";
 
 function App() {
-  const [technos, setTechnos] = useState([]);
+  //State
+  const [technos, setTechnos] = useState<string[]>([]);
 
-  // technos
-  // [
-  //   { name: "React", category: "Front", description: "Learn React" },
-  //   { name: "Node", category: "Back", description: "Learn Node" },
-  // ];
-
-  const handleAddTechno = (techno: TechnoType) => {
+  //Comportement
+  const handleAddTechno = (techno: AddTechnoType) => {
     console.log("handleAddTechnos", techno);
-    //setTechnos([...technos, newTechno])
-   
+    setTechnos([...technos, { ...techno, technoid: uuidv4() }]);
   };
+
+  const handleDelete = (id) => {
+    setTechnos(technos.filter((tech) => tech.technoid !== id));
+  };
+
   return (
     <div className="bg-white min-h-screen">
       <Menu />
@@ -27,9 +28,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/AddTechnos"
-          element={<AddTechnos handleAddTechno={handleAddTechno} a={10} />}
+          element={<AddTechnos handleAddTechno={handleAddTechno} />}
         />
-        <Route path="/TechnosLists" element={<TechnosLists />} />
+        <Route
+          path="/TechnosLists"
+          element={
+            <TechnosLists technos={technos} handleDelete={handleDelete} />
+          }
+        />
       </Routes>
     </div>
   );

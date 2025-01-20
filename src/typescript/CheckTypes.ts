@@ -7,7 +7,14 @@ export type TechnoType = {
   };
 };
 
+export type AddTechnoType = {
+  technoid: string;
+  technoname: string;
+  technocategory: string;
+  technodescription: string;
+};
+
 // interface AddTechnosProps {
 export type AddTechnosProps = {
-  handleAddTechno: (techno: TechnoType) => void;
+  handleAddTechno: (techno: AddTechnoType) => void;
 };

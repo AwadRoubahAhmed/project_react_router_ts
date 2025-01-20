@@ -1,29 +1,33 @@
-// import { useId } from "react";
 import { useState } from "react";
 import { AddTechnosProps } from "../../typescript/CheckTypes";
 
 function AddTechnos({ handleAddTechno }: AddTechnosProps) {
   //state;
   const [techno, setTechno] = useState({
-    name: "",
-    category: "",
-    description: "",
+    technoname: "",
+    technocategory: "",
+    technodescription: "",
   });
 
-  //const technoSelectedId = useId();
-
   //Comportement;
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTechno(event.target.value);
-  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     handleAddTechno(techno);
+    setTechno({
+      technoname: "",
+      technocategory: "",
+      technodescription: "",
+    });
 
     // Add the new techno to the list;
     // console.log("handleSubmit", technos);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setTechno({ ...techno, [name]: value });
   };
 
   return (
@@ -48,11 +52,11 @@ function AddTechnos({ handleAddTechno }: AddTechnosProps) {
             <div className="">
               <input
                 type="text"
-                id="techno"
-                name="techno"
+                id="technoname"
+                name="technoname"
                 placeholder="Your Technos..."
-                value={techno.name}
-                onChange={handleChange}
+                value={techno.technoname}
+                onChange={(event) => handleChange(event)}
                 className="w-full input input-primary max-w-full bg-white text-gray-800 text-base p-3"
               />
             </div>
@@ -67,8 +71,10 @@ function AddTechnos({ handleAddTechno }: AddTechnosProps) {
             </div>
             <div>
               <select
-                id="technos-category"
-                name="technos-category"
+                id="technoscategory"
+                name="technocategory"
+                value={techno.technocategory}
+                onChange={(event) => handleChange(event)}
                 className="w-full select select-primary max-w-full bg-white text-gray-800 text-base p-3"
               >
                 <option value="">Select a category</option>
@@ -89,9 +95,11 @@ function AddTechnos({ handleAddTechno }: AddTechnosProps) {
             </div>
             <div>
               <textarea
-                id="description"
-                name="description"
+                id="technodescription"
+                name="technodescription"
                 placeholder="Your description..."
+                value={techno.technodescription}
+                onChange={(event) => handleChange(event)}
                 cols={50}
                 rows={5}
                 className="w-full textarea textarea-primary bg-white text-gray-800 text-base"
