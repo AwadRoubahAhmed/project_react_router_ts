@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { AddTechnosProps } from "../../typescript/CheckTypes";
+import { AddTechnoType } from "../../typescript/CheckTypes";
+
+type AddTechnosProps = {
+  handleAddTechno: (techno: AddTechnoType) => void;
+};
 
 function AddTechnos({ handleAddTechno }: AddTechnosProps) {
   //state;
@@ -15,6 +19,7 @@ function AddTechnos({ handleAddTechno }: AddTechnosProps) {
     event.preventDefault();
 
     handleAddTechno(techno);
+
     setTechno({
       technoname: "",
       technocategory: "",
