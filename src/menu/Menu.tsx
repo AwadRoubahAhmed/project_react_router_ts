@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const Menu = () => {
   return (
     <div className="container sticky top-0 z-50 flex">
-      <nav className="w-full bg-slate-900  text-slate-200 text-lg font-bold p-8">
+      <nav className="w-full h-[50px] bg-gray-200 border-b-4 text-slate-800 text-lg font-bold p-2">
         <ul className="flex justify-center items-center space-x-14">
           <li>
             <NavLink

@@ -6,7 +6,7 @@ function TechnoItem({ technos, handleDelete }: TechnosListsProps) {
       {technos.map((techno) => (
         <div
           key={techno.technoid}
-          className="p-4 my-4 border text-center text-gray-800 shadow-2xl bg-gray-300 rounded-md"
+          className="p-4 my-4 border text-center text-slate-100 shadow-2xl bg-slate-900 rounded-md"
         >
           <h2 className="font-bold text-lg">Techno</h2>
           <h2 className="mb-3">{techno.technoname}</h2>

@@ -37,7 +37,7 @@ function AddTechnos({ handleAddTechno }: AddTechnosProps) {
 
   return (
     <div>
-      <h1 className="font-bold text-3xl text-center text-gray-800 my-12">
+      <h1 className="font-bold text-3xl text-center text-gray-200 my-12">
         Add a Technos !
       </h1>
 

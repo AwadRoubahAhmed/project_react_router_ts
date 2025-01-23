@@ -6,7 +6,7 @@ import TechnosLists from "./components/TechnosLists/TechnosLists";
 import Menu from "./menu/Menu";
 import { useEffect, useState } from "react";
 import { AddTechnoType } from "./typescript/CheckTypes";
-import useLocalStorage from "./Hooks/UseLocalStorage";
+import useLocalStorage from "./Hooks/useLocalStorage";
 function App() {
   //State
   const [technos, setTechnos] = useState<AddTechnoType[]>([]);
@@ -19,6 +19,10 @@ function App() {
   );
 
   //Comportement
+
+  useEffect(() => {
+    setTechnos(technosLS);
+  }, []);
 
   useEffect(() => {
     console.log("useEffect called with effect set to ", technos);
@@ -35,7 +39,7 @@ function App() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="w-full min-h-screen">
       <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
